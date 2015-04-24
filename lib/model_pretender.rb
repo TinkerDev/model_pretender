@@ -25,22 +25,22 @@ class ModelPretender
   end
 
   def self.boolean_attr_accessor *attrs
-    block = ->(value) { ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value) }
+    block = ->(value) { ActiveRecord::Type::Boolean.new.type_cast_from_user(value) }
     base_attr_accessor *attrs, block
   end
 
   def self.date_attr_accessor *attrs
-    block = ->(value) { ActiveRecord::ConnectionAdapters::Column.value_to_date(value) }
+    block = ->(value) { ActiveRecord::Type::Date.new.type_cast_from_user(value) }
     base_attr_accessor *attrs, block
   end
 
   def self.time_attr_accessor *attrs
-    block = ->(value) { ActiveRecord::ConnectionAdapters::Column.string_to_time(value) }
+    block = ->(value) { ActiveRecord::Type::Time.new.type_cast_from_user(value) }
     base_attr_accessor *attrs, block
   end
 
   def self.integer_attr_accessor *attrs
-    block = ->(value) { ActiveRecord::ConnectionAdapters::Column.value_to_integer(value) }
+    block = ->(value) { ActiveRecord::Type::Integer.new.type_cast_from_user(value) }
     base_attr_accessor *attrs, block
   end
 
