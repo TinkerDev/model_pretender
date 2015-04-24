@@ -4,6 +4,7 @@ require 'active_record'
 class ModelPretender
   include ActiveModel::Model
   include ActiveModel::Validations
+  include ActiveModel::Validations::Callbacks
   include ActiveModel::Serialization
   extend ActiveModel::Naming
 
